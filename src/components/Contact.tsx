@@ -9,13 +9,21 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    // In production, integrate with Resend / EmailJS / Formspree here
-    // For now simulate success after 1s
-    await new Promise((r) => setTimeout(r, 1000));
+  e.preventDefault();
+  setStatus("sending");
+
+  const res = await fetch("https://formspree.io/f/xaqarbpj", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(form),
+  });
+
+  if (res.ok) {
     setStatus("sent");
-  };
+  } else {
+    setStatus("error");
+  }
+};
 
   const inputStyle: React.CSSProperties = {
     background: "transparent",
