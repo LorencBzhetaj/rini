@@ -84,7 +84,7 @@ export default function Navbar() {
               display: "block",
               lineHeight: 1.1,
             }}>
-              Mr. Cartongesso
+              M.B Cartongesso
             </span>
             <span style={{
               fontSize: "0.52rem",
