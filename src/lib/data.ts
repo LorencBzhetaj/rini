@@ -54,8 +54,7 @@ export const projects: Project[] = [
     media: [
       { type: "img", src: "/images/proj2-cover.jpg", alt: "Soggiorno con pannelli legno e LED" },
       { type: "img", src: "/images/proj2-b.jpg", alt: "Parete TV con retroilluminazione RGB" },
-      { type: "video", src: "/videos/video1.mp4" },
-      { type: "video", src: "/videos/video2.mp4" },
+
     ],
   },
   {
