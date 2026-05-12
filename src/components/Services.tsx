@@ -5,7 +5,6 @@ import { services, projects, Project } from "@/lib/data";
 import { useState } from "react";
 import ProjectModal from "./ProjectModal";
 
-// Build a merged "service gallery" project from multiple project IDs
 function buildServiceProject(
   svc: typeof services[0],
   projectIds: number[],
@@ -14,10 +13,7 @@ function buildServiceProject(
   const relatedProjects = projectIds
     .map((id) => projects.find((p) => p.id === id))
     .filter(Boolean) as Project[];
-
-  // Merge all media from related projects into one
   const allMedia = relatedProjects.flatMap((p) => p.media);
-
   return {
     id: 0,
     slug: "service-gallery",
@@ -45,72 +41,100 @@ export default function Services() {
   };
 
   return (
-    <section id="services" style={{ padding: "6rem 3rem", background: "var(--charcoal)" }}>
-      {/* Header */}
-      <div style={{ maxWidth: "640px", marginBottom: "4rem" }}>
+    <section
+      id="services"
+      style={{
+        padding: "7rem 3rem",
+        background: "var(--ivory)",
+      }}
+    >
+      {/* ── Header ── */}
+      <div style={{ textAlign: "center", marginBottom: "4rem" }}>
         <div style={{
-          display: "flex", alignItems: "center", gap: "0.7rem",
-          fontSize: "0.65rem", fontWeight: 500, letterSpacing: "0.22em",
-          textTransform: "uppercase", color: "var(--gold)", marginBottom: "1.2rem",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "0.75rem",
+          fontSize: "0.62rem",
+          fontWeight: 500,
+          letterSpacing: "0.26em",
+          textTransform: "uppercase",
+          color: "var(--gold)",
+          marginBottom: "1.5rem",
         }}>
-          <span style={{ display: "block", width: "24px", height: "1px", background: "var(--gold)" }} />
-          {t("Cosa Facciamo", "What We Do")}
+          <span style={{ display: "block", width: "36px", height: "1px", background: "var(--gold)" }} />
+          {t("I Nostri Servizi", "Our Services")}
+          <span style={{ display: "block", width: "36px", height: "1px", background: "var(--gold)" }} />
         </div>
+
         <h2 style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(2rem, 4vw, 3.4rem)",
-          fontWeight: 300, lineHeight: 1.12, color: "var(--ivory)", marginBottom: "1rem",
+          fontSize: "clamp(2.2rem, 4.5vw, 4rem)",
+          fontWeight: 300,
+          lineHeight: 1.12,
+          color: "var(--charcoal)",
+          marginBottom: "1.25rem",
+          letterSpacing: "-0.01em",
         }}>
-          {t("I Nostri ", "Our ")}
-          <em style={{ fontStyle: "italic", color: "var(--gold)" }}>{t("Servizi", "Services")}</em>
+          {t("Soluzioni ", "Solutions ")}<em style={{ fontStyle: "italic", color: "var(--gold)" }}>
+            {t("su misura", "tailor-made")}
+          </em>{t(" per ogni esigenza.", " for every need.")}
         </h2>
-        <p style={{ fontSize: "0.93rem", fontWeight: 300, lineHeight: 1.9, color: "var(--text-light)" }}>
+
+        <p style={{
+          fontSize: "0.95rem",
+          fontWeight: 300,
+          lineHeight: 1.85,
+          color: "var(--text-muted)",
+          maxWidth: "520px",
+          margin: "0 auto",
+        }}>
           {t(
-            "Dall'idea al risultato finale: ogni lavoro è realizzato con cura artigianale, materiali premium e sistemi LED di ultima generazione.",
-            "From concept to final result: every project is crafted with artisan care, premium materials, and next-generation LED systems."
+            "Design, materiali di qualità e tecnologia LED si uniscono per creare ambienti unici, eleganti e funzionali.",
+            "Design, quality materials and LED technology combine to create unique, elegant and functional environments."
           )}
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="services-grid" style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "1px",
-        background: "rgba(255,255,255,0.06)",
-      }}>
-        {services.map((svc, i) => {
+      {/* ── Cards Grid ── */}
+      <div
+        className="services-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "1.75rem",
+          maxWidth: "1300px",
+          margin: "0 auto 3.5rem",
+        }}
+      >
+        {services.slice(0, 3).map((svc, i) => {
           const hasGallery = svc.galleryProjectIds.length > 0;
-          const totalMedia = svc.galleryProjectIds
-            .map((id) => projects.find((p) => p.id === id))
-            .filter(Boolean)
-            .flatMap((p) => p!.media).length;
-
           return (
             <article
               key={i}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               style={{
-                background: hovered === i ? "var(--charcoal-mid)" : "var(--charcoal)",
-                transition: "background 0.3s",
+                background: "#FDFAF5",
+                borderRadius: "16px",
                 overflow: "hidden",
+                border: "1px solid var(--border)",
+                boxShadow: hovered === i
+                  ? "0 24px 60px rgba(107,76,42,0.13)"
+                  : "0 4px 20px rgba(107,76,42,0.06)",
+                transition: "box-shadow 0.35s ease, transform 0.35s ease",
+                transform: hovered === i ? "translateY(-6px)" : "translateY(0)",
+                position: "relative",
               }}
             >
-              {/* Clickable image */}
+              {/* Image */}
               <div
                 onClick={() => hasGallery && handleImageClick(svc)}
                 style={{
                   position: "relative",
-                  height: "200px",
+                  height: "260px",
                   overflow: "hidden",
+                  borderRadius: "16px 16px 0 0",
                   cursor: hasGallery ? "pointer" : "default",
-                }}
-                role={hasGallery ? "button" : undefined}
-                tabIndex={hasGallery ? 0 : undefined}
-                aria-label={hasGallery ? t(`Vedi galleria: ${svc.titleIT}`, `View gallery: ${svc.titleEN}`) : undefined}
-                onKeyDown={(e) => {
-                  if (hasGallery && (e.key === "Enter" || e.key === " ")) handleImageClick(svc);
                 }}
               >
                 <Image
@@ -119,103 +143,213 @@ export default function Services() {
                   fill
                   style={{
                     objectFit: "cover",
-                    transition: "transform 0.6s ease, filter 0.4s",
-                    transform: hovered === i ? "scale(1.06)" : "scale(1)",
-                    filter: hovered === i ? "brightness(0.55)" : "brightness(0.45)",
+                    transition: "transform 0.6s ease",
+                    transform: hovered === i ? "scale(1.05)" : "scale(1)",
                   }}
-                  sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                  sizes="(max-width: 900px) 100vw, 33vw"
                 />
 
-                {/* Gold accent bar */}
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0,
-                  width: hovered === i ? "100%" : "0",
-                  height: "2px", background: "var(--gold)",
-                  transition: "width 0.4s ease",
-                }} />
-
-                {/* "View Gallery" overlay on hover */}
+                {/* Dark overlay on hover */}
                 {hasGallery && (
                   <div style={{
                     position: "absolute", inset: 0,
-                    display: "flex", flexDirection: "column",
-                    alignItems: "center", justifyContent: "center", gap: "0.4rem",
+                    background: "rgba(42,34,24,0.35)",
                     opacity: hovered === i ? 1 : 0,
-                    transition: "opacity 0.3s",
-                    background: "rgba(42,34,24,0.25)",
+                    transition: "opacity 0.35s",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}>
                     <div style={{
-                      background: "var(--ivory)", color: "var(--warm-brown)",
-                      fontSize: "0.7rem", fontWeight: 500,
-                      letterSpacing: "0.1em", textTransform: "uppercase",
-                      padding: "0.45rem 1.1rem",
-                      transform: hovered === i ? "translateY(0)" : "translateY(6px)",
+                      background: "var(--ivory)",
+                      color: "var(--warm-brown)",
+                      fontSize: "0.72rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      padding: "0.55rem 1.3rem",
+                      borderRadius: "4px",
+                      transform: hovered === i ? "translateY(0)" : "translateY(8px)",
                       transition: "transform 0.3s ease",
                     }}>
                       {t("Vedi Galleria", "View Gallery")}
-                    </div>
-                    {/* Media count badge */}
-                    <div style={{
-                      fontSize: "0.62rem", color: "rgba(253,250,245,0.8)",
-                      letterSpacing: "0.08em",
-                    }}>
-                      📷 {totalMedia} {t("foto/video", "photos/videos")}
                     </div>
                   </div>
                 )}
               </div>
 
+              {/* Circle icon badge — overlaps image/content border */}
+              <div style={{
+                position: "absolute",
+                top: "236px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "48px",
+                height: "48px",
+                borderRadius: "50%",
+                background: "var(--ivory)",
+                border: "1px solid var(--border)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "1.1rem",
+                color: "var(--gold)",
+                zIndex: 2,
+                boxShadow: "0 2px 12px rgba(107,76,42,0.1)",
+              }}>
+                {svc.icon}
+              </div>
+
               {/* Content */}
-              <div style={{ padding: "1.75rem 1.75rem 2rem" }}>
-                <span style={{ fontSize: "1.3rem", marginBottom: "0.85rem", display: "block", color: "var(--gold)" }}>
-                  {svc.icon}
-                </span>
+              <div style={{ padding: "2.25rem 1.75rem 2rem" }}>
+                {/* Number */}
+                <div style={{
+                  fontSize: "0.65rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  color: "var(--gold)",
+                  marginBottom: "0.6rem",
+                }}>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+
+                {/* Title */}
                 <h3 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.25rem", fontWeight: 400,
-                  color: "var(--ivory)", marginBottom: "0.75rem", lineHeight: 1.3,
+                  fontSize: "1.55rem",
+                  fontWeight: 400,
+                  color: "var(--charcoal)",
+                  marginBottom: "0.6rem",
+                  lineHeight: 1.2,
                 }}>
                   {t(svc.titleIT, svc.titleEN)}
                 </h3>
+
+                {/* Gold underline */}
+                <div style={{
+                  width: "32px",
+                  height: "1.5px",
+                  background: "var(--gold)",
+                  marginBottom: "1rem",
+                  transition: "width 0.3s ease",
+                  ...(hovered === i ? { width: "56px" } : {}),
+                }} />
+
+                {/* Description */}
                 <p style={{
-                  fontSize: "0.83rem", fontWeight: 300,
-                  lineHeight: 1.85, color: "var(--text-light)", marginBottom: "1rem",
+                  fontSize: "0.85rem",
+                  fontWeight: 300,
+                  lineHeight: 1.85,
+                  color: "var(--text-muted)",
+                  marginBottom: "1.5rem",
                 }}>
                   {t(svc.descIT, svc.descEN)}
                 </p>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
-                  {svc.items.map((item, j) => (
-                    <li key={j} style={{ fontSize: "0.76rem", color: "var(--gold)", letterSpacing: "0.03em" }}>
-                      <span style={{ opacity: 0.5 }}>— </span>{t(item.it, item.en)}
-                    </li>
-                  ))}
-                </ul>
 
-                {/* Gallery link at bottom */}
-                {hasGallery && (
-                  <button
-                    onClick={() => handleImageClick(svc)}
-                    style={{
-                      marginTop: "1.25rem",
-                      background: "none", border: "none",
-                      cursor: "pointer", padding: 0,
-                      display: "flex", alignItems: "center", gap: "0.4rem",
-                      fontSize: "0.75rem", color: "var(--gold)",
-                      fontFamily: "'DM Sans', sans-serif",
-                      letterSpacing: "0.08em", textTransform: "uppercase",
-                      transition: "opacity 0.2s",
-                      opacity: 0.75,
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.75")}
-                  >
-                    {t("Vedi lavori correlati →", "View related work →")}
-                  </button>
-                )}
+                {/* Link */}
+                <button
+                  onClick={() => hasGallery && handleImageClick(svc)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: hasGallery ? "pointer" : "default",
+                    padding: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    fontSize: "0.7rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "var(--gold)",
+                    fontFamily: "'DM Sans', sans-serif",
+                    transition: "gap 0.25s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.gap = "0.7rem")}
+                  onMouseLeave={(e) => (e.currentTarget.style.gap = "0.4rem")}
+                >
+                  {t("Scopri di Più", "Learn More")} →
+                </button>
               </div>
             </article>
           );
         })}
+      </div>
+
+      {/* ── Bottom CTA Bar ── */}
+      <div style={{
+        maxWidth: "1300px",
+        margin: "0 auto",
+        background: "var(--ivory-dark)",
+        border: "1px solid var(--border)",
+        borderRadius: "12px",
+        padding: "1.75rem 2.5rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "2rem",
+        flexWrap: "wrap",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
+          {/* Icon circle */}
+          <div style={{
+            width: "52px", height: "52px",
+            borderRadius: "50%",
+            border: "1px solid var(--border-strong)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "var(--gold)", fontSize: "1.1rem",
+            flexShrink: 0,
+          }}>
+            ✏
+          </div>
+          <div>
+            <div style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "1.25rem",
+              fontWeight: 400,
+              color: "var(--charcoal)",
+              marginBottom: "0.2rem",
+            }}>
+              {t("Hai un progetto in mente?", "Have a project in mind?")}
+            </div>
+            <div style={{
+              fontSize: "0.82rem",
+              fontWeight: 300,
+              color: "var(--text-muted)",
+            }}>
+              {t(
+                "Parliamone insieme e realizziamo la soluzione perfetta per i tuoi spazi.",
+                "Let's talk and create the perfect solution for your spaces."
+              )}
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="https://wa.me/393889995326"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: "var(--warm-brown)",
+            color: "var(--white)",
+            padding: "0.95rem 2rem",
+            fontSize: "0.75rem",
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            textDecoration: "none",
+            borderRadius: "4px",
+            whiteSpace: "nowrap",
+            transition: "background 0.3s",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--charcoal)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--warm-brown)")}
+        >
+          {t("Richiedi un Preventivo", "Request a Quote")} →
+        </a>
       </div>
 
       {/* Modal */}
