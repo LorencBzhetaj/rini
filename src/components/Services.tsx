@@ -75,9 +75,11 @@ export default function Services() {
           marginBottom: "1.25rem",
           letterSpacing: "-0.01em",
         }}>
-          {t("Soluzioni ", "Solutions ")}<em style={{ fontStyle: "italic", color: "var(--gold)" }}>
+          {t("Soluzioni ", "Solutions ")}
+          <em style={{ fontStyle: "italic", color: "var(--gold)" }}>
             {t("su misura", "tailor-made")}
-          </em>{t(" per ogni esigenza.", " for every need.")}
+          </em>
+          {t(" per ogni esigenza.", " for every need.")}
         </h2>
 
         <p style={{
@@ -100,19 +102,20 @@ export default function Services() {
         className="services-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(6, 1fr)",
           gap: "1.75rem",
           maxWidth: "1300px",
           margin: "0 auto 3.5rem",
         }}
       >
-        {services.slice(0, 3).map((svc, i) => {
+        {services.map((svc, i) => {
           const hasGallery = svc.galleryProjectIds.length > 0;
           return (
             <article
               key={i}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
+              className={`service-card service-card-${i}`}
               style={{
                 background: "#FDFAF5",
                 borderRadius: "16px",
@@ -149,7 +152,6 @@ export default function Services() {
                   sizes="(max-width: 900px) 100vw, 33vw"
                 />
 
-                {/* Dark overlay on hover */}
                 {hasGallery && (
                   <div style={{
                     position: "absolute", inset: 0,
@@ -178,7 +180,7 @@ export default function Services() {
                 )}
               </div>
 
-              {/* Circle icon badge — overlaps image/content border */}
+              {/* Circle icon badge */}
               <div style={{
                 position: "absolute",
                 top: "236px",
@@ -202,7 +204,6 @@ export default function Services() {
 
               {/* Content */}
               <div style={{ padding: "2.25rem 1.75rem 2rem" }}>
-                {/* Number */}
                 <div style={{
                   fontSize: "0.65rem",
                   fontWeight: 500,
@@ -213,7 +214,6 @@ export default function Services() {
                   {String(i + 1).padStart(2, "0")}
                 </div>
 
-                {/* Title */}
                 <h3 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "1.55rem",
@@ -225,17 +225,14 @@ export default function Services() {
                   {t(svc.titleIT, svc.titleEN)}
                 </h3>
 
-                {/* Gold underline */}
                 <div style={{
-                  width: "32px",
+                  width: hovered === i ? "56px" : "32px",
                   height: "1.5px",
                   background: "var(--gold)",
                   marginBottom: "1rem",
                   transition: "width 0.3s ease",
-                  ...(hovered === i ? { width: "56px" } : {}),
                 }} />
 
-                {/* Description */}
                 <p style={{
                   fontSize: "0.85rem",
                   fontWeight: 300,
@@ -246,7 +243,6 @@ export default function Services() {
                   {t(svc.descIT, svc.descEN)}
                 </p>
 
-                {/* Link */}
                 <button
                   onClick={() => hasGallery && handleImageClick(svc)}
                   style={{
@@ -264,9 +260,14 @@ export default function Services() {
                     color: "var(--gold)",
                     fontFamily: "'DM Sans', sans-serif",
                     transition: "gap 0.25s ease",
+                    opacity: hasGallery ? 1 : 0.4,
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.gap = "0.7rem")}
-                  onMouseLeave={(e) => (e.currentTarget.style.gap = "0.4rem")}
+                  onMouseEnter={(e) => {
+                    if (hasGallery) (e.currentTarget as HTMLElement).style.gap = "0.7rem";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.gap = "0.4rem";
+                  }}
                 >
                   {t("Scopri di Più", "Learn More")} →
                 </button>
@@ -291,7 +292,6 @@ export default function Services() {
         flexWrap: "wrap",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
-          {/* Icon circle */}
           <div style={{
             width: "52px", height: "52px",
             borderRadius: "50%",
@@ -356,13 +356,43 @@ export default function Services() {
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       <style>{`
-        @media (max-width: 600px) {
-          #services { padding: 4rem 1.25rem !important; }
-          .services-grid { grid-template-columns: 1fr !important; }
+        /* Desktop: 3 sipër, 2 poshtë të qendruara */
+        @media (min-width: 1001px) {
+          .service-card-0 { grid-column: 1 / 3; }
+          .service-card-1 { grid-column: 3 / 5; }
+          .service-card-2 { grid-column: 5 / 7; }
+          .service-card-3 { grid-column: 2 / 4; }
+          .service-card-4 { grid-column: 4 / 6; }
         }
+
+        /* Tablet: 2 kolona */
         @media (min-width: 601px) and (max-width: 1000px) {
           #services { padding: 5rem 1.5rem !important; }
-          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .service-card-0,
+          .service-card-1,
+          .service-card-2,
+          .service-card-3,
+          .service-card-4 {
+            grid-column: auto !important;
+          }
+        }
+
+        /* Mobile: 1 kolonë */
+        @media (max-width: 600px) {
+          #services { padding: 4rem 1.25rem !important; }
+          .services-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .service-card-0,
+          .service-card-1,
+          .service-card-2,
+          .service-card-3,
+          .service-card-4 {
+            grid-column: auto !important;
+          }
         }
       `}</style>
     </section>

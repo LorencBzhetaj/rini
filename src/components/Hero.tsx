@@ -1,234 +1,388 @@
 "use client";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { useLang } from "@/lib/LangContext";
-import { stats, WHATSAPP_URL } from "@/lib/data";
+import { WHATSAPP_URL } from "@/lib/data";
 
 export default function Hero() {
   const { t } = useLang();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    v.play().catch(() => {});
+
+    const timer = setTimeout(() => {
+      if (v.paused) v.play().catch(() => {});
+    }, 300);
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && v.paused) {
+        v.play().catch(() => {});
+      }
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, []);
 
   return (
-    <>
-      {/* ── DESKTOP HERO ── */}
-      <section id="home" className="hero-desktop" style={{
-        minHeight: "100vh",
-        paddingTop: "68px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+    <section
+      id="home"
+      style={{
         position: "relative",
+        height: "100svh",
+        minHeight: "600px",
         overflow: "hidden",
-      }}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: "Mr. Cartongesso",
-            description: "Specialisti in controsoffitti in cartongesso con sistemi LED integrati",
-            url: "https://www.mrcartongesso.it",
-            telephone: "+393889995326",
-            address: { "@type": "PostalAddress", addressCountry: "IT" },
-            areaServed: "IT",
-          }),
-        }} />
-
-        {/* Left text */}
-        <div style={{
-          display: "flex", flexDirection: "column", justifyContent: "center",
-          padding: "5rem 4rem 5rem 3rem", position: "relative", zIndex: 2,
-        }}>
-          <HeroContent t={t} />
-        </div>
-
-        {/* Right image */}
-        <div style={{ position: "relative", overflow: "hidden" }}>
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Controsoffitto LED Mr. Cartongesso"
-            fill
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            priority
-            sizes="50vw"
-          />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to right, var(--ivory) 0%, transparent 25%)",
-          }} />
-        </div>
-      </section>
-
-      {/* ── MOBILE HERO ── */}
-      <section id="home-mobile" className="hero-mobile" style={{
-        position: "relative",
-        minHeight: "100svh",
-        paddingTop: "68px",
         display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-      }}>
-        {/* Full bleed image — takes top 55% of screen */}
-        <div style={{
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* ── VIDEO BACKGROUND ── */}
+      <div
+        style={{
           position: "absolute",
           inset: 0,
           zIndex: 0,
-        }}>
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Controsoffitto LED Mr. Cartongesso"
-            fill
-            style={{ objectFit: "cover", objectPosition: "center top" }}
-            priority
-            sizes="100vw"
-          />
-          {/* Dark gradient from bottom so text is readable */}
-          <div style={{
+          // scale hequr — shkaktonte crop në mobile
+        }}
+      >
+        {/* Fallback image */}
+        <div
+          style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(245,239,224,0) 0%, rgba(245,239,224,0) 30%, rgba(245,239,224,0.85) 58%, rgba(245,239,224,1) 72%)",
-          }} />
-        </div>
+            backgroundImage: "url('/images/hero-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: videoLoaded ? 0 : 1,
+            transition: "opacity 1.2s ease",
+          }}
+        />
 
-        {/* Text content — pushed to bottom */}
-        <div style={{
-          position: "relative",
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          onCanPlay={() => setVideoLoaded(true)}
+          onLoadedData={() => setVideoLoaded(true)}
+          onLoadedMetadata={() => {
+            setVideoLoaded(true);
+            videoRef.current?.play().catch(() => {});
+          }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+            opacity: videoLoaded ? 1 : 0,
+            transition: "opacity 1.2s ease",
+          }}
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero.webm" type="video/webm" />
+        </video>
+      </div>
+
+      {/* ── GRADIENT OVERLAYS ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
           zIndex: 1,
-          marginTop: "auto",
-          padding: "2rem 1.5rem 3rem",
-        }}>
-          <HeroContent t={t} />
-        </div>
-      </section>
+          background:
+            "linear-gradient(to bottom, rgba(42,34,24,0.2) 0%, rgba(42,34,24,0.45) 40%, rgba(42,34,24,0.75) 80%, rgba(42,34,24,0.88) 100%)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(42,34,24,0.5) 100%)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "1px",
+          zIndex: 3,
+          background:
+            "linear-gradient(to right, transparent 0%, rgba(200,165,88,0.6) 50%, transparent 100%)",
+        }}
+      />
 
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-desktop { display: grid !important; }
-        .hero-mobile  { display: none !important; }
-
-        @media (max-width: 900px) {
-          .hero-desktop { display: none !important; }
-          .hero-mobile  { display: flex !important; }
-        }
-      `}</style>
-    </>
-  );
-}
-
-/* Shared content between desktop and mobile */
-function HeroContent({ t }: { t: (it: string, en: string) => string }) {
-  return (
-    <>
-      {/* Eyebrow */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: "0.7rem",
-        fontSize: "0.68rem", fontWeight: 500,
-        letterSpacing: "0.22em", textTransform: "uppercase",
-        color: "var(--gold)", marginBottom: "1.5rem",
-        opacity: 0, animation: "fadeInUp 0.7s ease 0.1s forwards",
-      }}>
-        <span style={{ display: "block", width: "28px", height: "1px", background: "var(--gold)", flexShrink: 0 }} />
-        {t("Specialisti in Cartongesso & LED", "Drywall & LED Lighting Specialists")}
-      </div>
-
-      {/* H1 */}
-      <h1 style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: "clamp(2.4rem, 8vw, 5rem)",
-        fontWeight: 300, lineHeight: 1.06,
-        letterSpacing: "-0.01em", color: "var(--charcoal)",
-        marginBottom: "1.4rem",
-        opacity: 0, animation: "fadeInUp 0.7s ease 0.2s forwards",
-      }}>
-        {t("Trasformiamo i Tuoi", "Transforming Your")}<br />
-        {t("Spazi con ", "Spaces with ")}
-        <em style={{ fontStyle: "italic", color: "var(--warm-brown)" }}>
-          {t("Precisione", "Artisan")}<br />{t("Artigiana", "Precision")}
-        </em>
-      </h1>
-
-      {/* Description */}
-      <p style={{
-        fontSize: "0.92rem", fontWeight: 300, lineHeight: 1.85,
-        color: "var(--text-muted)", maxWidth: "460px", marginBottom: "2rem",
-        opacity: 0, animation: "fadeInUp 0.7s ease 0.3s forwards",
-      }}>
-        {t(
-          "Progettiamo e installiamo controsoffitti in cartongesso con sistemi LED integrati. Soluzioni su misura per residenze e spazi commerciali.",
-          "We design and install drywall ceilings with integrated LED systems. Custom solutions for homes and commercial spaces."
-        )}
-      </p>
-
-      {/* CTAs */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: "0.85rem",
-        marginBottom: "2.5rem", flexWrap: "wrap",
-        opacity: 0, animation: "fadeInUp 0.7s ease 0.4s forwards",
-      }}>
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
+      {/* ── CONTENT ── */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          width: "100%",
+          maxWidth: "900px",
+          margin: "0 auto",
+          padding: "0 2rem",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           style={{
-            fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500,
-            color: "var(--white)", background: "var(--warm-brown)",
-            padding: "0.9rem 1.8rem", textDecoration: "none",
-            letterSpacing: "0.08em", textTransform: "uppercase",
-            transition: "background 0.25s",
-            display: "inline-flex", alignItems: "center", gap: "0.5rem",
-            whiteSpace: "nowrap",
-          }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--charcoal)")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "var(--warm-brown)")}
-        >
-          <span>💬</span> {t("Scrivici ora", "Message Us Now")}
-        </a>
-        <a href="#work"
-          style={{
-            fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 400,
-            color: "var(--warm-brown)", border: "1px solid var(--border-strong)",
-            padding: "0.9rem 1.6rem", textDecoration: "none",
-            letterSpacing: "0.08em", textTransform: "uppercase",
-            transition: "all 0.25s", whiteSpace: "nowrap",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "var(--warm-brown)";
-            (e.currentTarget as HTMLElement).style.color = "var(--white)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "transparent";
-            (e.currentTarget as HTMLElement).style.color = "var(--warm-brown)";
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.75rem",
+            fontSize: "0.6rem",
+            fontWeight: 500,
+            letterSpacing: "0.32em",
+            textTransform: "uppercase",
+            color: "rgba(200,165,88,0.9)",
+            marginBottom: "2rem",
           }}
         >
-          {t("Vedi i Lavori →", "See Our Work →")}
-        </a>
+          <span
+            style={{
+              display: "block",
+              width: "32px",
+              height: "1px",
+              background: "rgba(200,165,88,0.7)",
+            }}
+          />
+          {t("Maestri del Gesso & LED", "Drywall & LED Masters")}
+          <span
+            style={{
+              display: "block",
+              width: "32px",
+              height: "1px",
+              background: "rgba(200,165,88,0.7)",
+            }}
+          />
+        </motion.div>
+
+        {/* Main heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(2.8rem, 7.5vw, 6.5rem)",
+            fontWeight: 300,
+            lineHeight: 1.05,
+            letterSpacing: "-0.01em",
+            color: "#FDFAF5",
+            marginBottom: "1.5rem",
+          }}
+        >
+          {t("Luxury drywall", "Luxury drywall")}
+          <br />
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "#C8A558",
+              fontWeight: 300,
+            }}
+          >
+            {"& LED design."}
+          </em>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+            fontWeight: 300,
+            lineHeight: 1.8,
+            color: "rgba(253,250,245,0.72)",
+            maxWidth: "480px",
+            marginBottom: "3rem",
+            letterSpacing: "0.01em",
+          }}
+        >
+          {t(
+            "Interni moderni realizzati con precisione ed eleganza.",
+            "Modern interiors crafted with precision and elegance."
+          )}
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="hero-ctas"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+            flexWrap: "wrap",
+            width: "100%",
+          }}
+        >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-btn-primary"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.95rem 2.2rem",
+              background: "rgba(200,165,88,0.92)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(200,165,88,0.6)",
+              borderRadius: "100px",
+              color: "#2A2218",
+              fontSize: "0.75rem",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "all 0.3s ease",
+              whiteSpace: "nowrap",
+            }}
+          >
+            💬 {t("Richiedi Preventivo", "Request a Quote")}
+          </a>
+
+          <a
+            href="#work"
+            className="hero-btn-secondary"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.95rem 2.2rem",
+              background: "rgba(253,250,245,0.08)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(253,250,245,0.28)",
+              borderRadius: "100px",
+              color: "rgba(253,250,245,0.9)",
+              fontSize: "0.75rem",
+              fontWeight: 400,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "all 0.3s ease",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {t("Vedi Progetti", "View Projects")} →
+          </a>
+        </motion.div>
+
+        
       </div>
 
-      {/* Stats */}
-      <div style={{
-        display: "flex", gap: "2rem", paddingTop: "1.8rem",
-        borderTop: "1px solid var(--border)", flexWrap: "wrap",
-        opacity: 0, animation: "fadeInUp 0.7s ease 0.5s forwards",
-      }}>
-        {[
-          { num: "200+", it: "Progetti", en: "Projects" },
-          { num: "10+", it: "Anni", en: "Years" },
-          { num: "100%", it: "Soddisfazione", en: "Satisfaction" },
-        ].map((s) => (
-          <div key={s.num}>
-            <div style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "2rem", fontWeight: 300,
-              color: "var(--warm-brown)", lineHeight: 1, marginBottom: "0.25rem",
-            }}>
-              {s.num}
-            </div>
-            <div style={{
-              fontSize: "0.62rem", fontWeight: 400,
-              letterSpacing: "0.12em", textTransform: "uppercase",
-              color: "var(--text-muted)",
-            }}>
-              {t(s.it, s.en)}
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
+      {/* ── SCROLL INDICATOR ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.4 }}
+        style={{
+          position: "absolute",
+          bottom: "2.5rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 3,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.5rem",
+          cursor: "pointer",
+        }}
+        onClick={() =>
+          document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        <span
+          style={{
+            fontSize: "0.55rem",
+            fontWeight: 500,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: "rgba(253,250,245,0.35)",
+          }}
+        >
+          {t("Scorri", "Scroll")}
+        </span>
+        <div
+          style={{
+            width: "1px",
+            height: "40px",
+            background:
+              "linear-gradient(to bottom, rgba(200,165,88,0.6), transparent)",
+            animation: "scrollLine 1.8s ease-in-out infinite",
+          }}
+        />
+      </motion.div>
+
+      {/* ── STYLES ── */}
+     <style>{`
+  .hero-btn-primary:hover {
+    background: rgba(253,250,245,0.95) !important;
+    border-color: rgba(253,250,245,0.8) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(200,165,88,0.3);
+  }
+  .hero-btn-secondary:hover {
+    background: rgba(253,250,245,0.14) !important;
+    border-color: rgba(253,250,245,0.55) !important;
+    transform: translateY(-2px);
+  }
+  @keyframes scrollLine {
+    0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+    50%  { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+  }
+
+  @media (max-width: 600px) {
+    #home {
+      height: 100dvh !important;
+    }
+    #home video {
+      object-position: center center;
+      height: 100dvh !important;
+    }
+    .hero-ctas {
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+    }
+    .hero-ctas a {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+      padding: 0.75rem 1.5rem !important;
+      font-size: 0.68rem !important;
+    }
+  }
+`}</style>
+    </section>
   );
 }
