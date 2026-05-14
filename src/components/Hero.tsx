@@ -191,7 +191,7 @@ export default function Hero() {
             marginBottom: "1.5rem",
           }}
         >
-          {t("Luxury drywall", "Luxury drywall")}
+          {t("Controsoffitti di lusso", "Luxury drywall")}
           <br />
           <em
             style={{
@@ -200,7 +200,7 @@ export default function Hero() {
               fontWeight: 300,
             }}
           >
-            {"& LED design."}
+            {t("& illuminazione LED.","& LED design.")}
           </em>
         </motion.h1>
 
