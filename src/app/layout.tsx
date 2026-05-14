@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LangProvider } from "@/lib/LangContext";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mrcartongesso.it"),
@@ -63,7 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it">
       <body>
-        <LangProvider>{children}</LangProvider>
+        <LangProvider>
+          <ScrollToTop />
+          {children}
+        </LangProvider>
+        
       </body>
     </html>
   );
