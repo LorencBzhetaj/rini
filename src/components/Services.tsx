@@ -269,7 +269,7 @@ export default function Services() {
                     (e.currentTarget as HTMLElement).style.gap = "0.4rem";
                   }}
                 >
-                  {t("Scopri di Più", "Learn More")} →
+                  {t("Esplora i progetti realizzati", "Explore completed projects")} →
                 </button>
               </div>
             </article>
