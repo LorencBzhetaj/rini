@@ -110,23 +110,37 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Structured data for footer */}
+      {/* Structured data for local business */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Mr. Cartongesso",
+            "@type": "HomeAndConstructionBusiness",
+            "@id": "https://www.mrcartongesso.it/#business",
+            name: "M.B Cartongesso",
+            alternateName: "Mr. Cartongesso",
             url: "https://www.mrcartongesso.it",
             logo: "https://www.mrcartongesso.it/images/logo.png",
+            telephone: "+393889995326",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Busca",
+              addressRegion: "Piemonte",
+              postalCode: "12022",
+              addressCountry: "IT",
+            },
+            areaServed: ["Busca", "Cuneo", "Piemonte"],
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+393889995326",
               contactType: "customer service",
               availableLanguage: ["Italian", "English"],
             },
-            sameAs: [`${WHATSAPP_URL}`],
+            sameAs: [
+              `${WHATSAPP_URL}`,
+              "https://www.instagram.com/rino_rinoo",
+            ],
           }),
         }}
       />

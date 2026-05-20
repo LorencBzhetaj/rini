@@ -91,8 +91,8 @@ export default function Services() {
           margin: "0 auto",
         }}>
           {t(
-            "Design, materiali di qualità e tecnologia LED si uniscono per creare ambienti unici, eleganti e funzionali.",
-            "Design, quality materials and LED technology combine to create unique, elegant and functional environments."
+            "Design, materiali di qualità e tecnologia LED si uniscono per creare ambienti unici a Busca, Cuneo e in tutta la provincia di Piemonte.",
+            "Design, quality materials and LED technology combine to create unique, elegant environments across Busca, Cuneo and Piemonte."
           )}
         </p>
       </div>
@@ -329,6 +329,8 @@ export default function Services() {
           href="https://wa.me/393889995326"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Richiedi un preventivo gratuito su WhatsApp"
+          data-cta="services-whatsapp"
           style={{
             background: "var(--warm-brown)",
             color: "var(--white)",

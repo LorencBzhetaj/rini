@@ -142,7 +142,7 @@ export const services: Service[] = [
       { it: "RGB / CCT / Dimmer",            en: "RGB / CCT / Dimmer" },
     ],
     image:    "/uploads/controfisicover.png",
-    imageAlt: "Controsoffitto LED",
+    imageAlt: "Controsoffitto LED a Busca, Cuneo — M.B Cartongesso",
     galleryProjectIds: [1],
   },
   {
@@ -172,7 +172,7 @@ export const services: Service[] = [
       { it: "Nicchie e mensole",                en: "Niches and shelves" },
     ],
     image:    "/uploads/fotocover_image.png",
-    imageAlt: "Parete attrezzata con LED",
+    imageAlt: "Parete attrezzata in cartongesso con LED — Busca, Piemonte",
     galleryProjectIds: [2],
   },
   {
@@ -187,7 +187,7 @@ export const services: Service[] = [
       { it: "Stucco e verniciatura", en: "Plaster & painting" },
     ],
     image:    "/images/service-residenziale.jpg",
-    imageAlt: "Lavori in cartongesso residenziale",
+    imageAlt: "Lavori in cartongesso residenziale a Cuneo, Piemonte",
     galleryProjectIds: [],
   },
   {
@@ -202,7 +202,7 @@ export const services: Service[] = [
       { it: "Linee diagonali e incrociate", en: "Diagonal & crossed lines" },
     ],
     image:    "/images/service-lineare.jpg",
-    imageAlt: "Profili LED lineari incassati nel soffitto",
+    imageAlt: "Profili LED lineari incassati nel soffitto — Busca, Cuneo",
     galleryProjectIds: [],
   },
 ];
