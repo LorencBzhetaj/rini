@@ -3,8 +3,10 @@ import "./globals.css";
 import { LangProvider } from "@/lib/LangContext";
 import ScrollToTop from "@/components/ScrollToTop";
 
+const BASE_URL = "https://www.mbcartongesso.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mrcartongesso.it"),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo | Piemonte",
     template: "%s | M.B Cartongesso",
@@ -24,6 +26,9 @@ export const metadata: Metadata = {
     "plasterboard company Cuneo",
     "M.B Cartongesso",
     "preventivo cartongesso gratuito",
+    "controsoffitti Piemonte",
+    "cartongesso Cuneo provincia",
+    "illuminazione indiretta LED Piemonte",
   ],
   authors: [{ name: "M.B Cartongesso" }],
   creator: "M.B Cartongesso",
@@ -43,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "it_IT",
     alternateLocale: "en_GB",
-    url: "https://www.mrcartongesso.it",
+    url: BASE_URL,
     siteName: "M.B Cartongesso",
     title: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo",
     description:
@@ -68,7 +73,7 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.ico" }],
   },
   alternates: {
-    canonical: "https://www.mrcartongesso.it",
+    canonical: BASE_URL,
   },
 };
 
@@ -81,14 +86,14 @@ export const viewport: Viewport = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://www.mrcartongesso.it/#business",
+  "@id": `${BASE_URL}/#business`,
   name: "M.B Cartongesso",
   alternateName: "Mr. Cartongesso",
   description:
     "Specialisti in controsoffitti in cartongesso con sistemi LED integrati a Busca e Cuneo. Pareti attrezzate, illuminazione lineare e lavori residenziali e commerciali in Piemonte.",
-  url: "https://www.mrcartongesso.it",
-  logo: "https://www.mrcartongesso.it/images/logo.png",
-  image: "https://www.mrcartongesso.it/images/og-image.jpg",
+  url: BASE_URL,
+  logo: `${BASE_URL}/images/logo.png`,
+  image: `${BASE_URL}/images/og-image.jpg`,
   telephone: "+393889995326",
   priceRange: "€€",
   currenciesAccepted: "EUR",
@@ -162,13 +167,55 @@ const localBusinessSchema = {
       },
     ],
   },
-  sameAs: ["https://www.instagram.com/rino_rinoo"],
+  sameAs: [
+    "https://www.instagram.com/rino_rinoo",
+  ],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       opens: "08:00",
       closes: "18:00",
+    },
+  ],
+};
+
+// FAQ Schema — boost per Google Featured Snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Quanto costa un controsoffitto in cartongesso con LED a Busca?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Il costo dipende dalla metratura, dal numero di livelli e dal sistema LED scelto. Offriamo preventivi gratuiti e trasparenti. Contattaci per una valutazione personalizzata.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Operate solo a Busca o anche in tutta la provincia di Cuneo?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Operiamo a Busca, Cuneo e in tutta la provincia di Piemonte. Contattaci per verificare la disponibilità nella tua zona.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quanto tempo richiede la posa di un controsoffitto?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "I tempi variano in base alla complessità del progetto. Un controsoffitto standard in un soggiorno richiede generalmente 2-4 giorni lavorativi.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Realizzate anche lavori commerciali oltre che residenziali?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sì, realizziamo progetti sia residenziali che commerciali: showroom, uffici, negozi e spazi di lusso con frame LED geometrici su misura.",
+      },
     },
   ],
 };
@@ -185,6 +232,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
           }}
         />
       </head>

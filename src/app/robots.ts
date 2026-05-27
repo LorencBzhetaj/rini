@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://www.mrcartongesso.it/sitemap.xml",
-    host: "https://www.mrcartongesso.it",
+    sitemap: "https://www.mbcartongesso.com/sitemap.xml",
+    host: "https://www.mbcartongesso.com",
   };
 }
