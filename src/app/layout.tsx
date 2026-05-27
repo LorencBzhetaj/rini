@@ -75,6 +75,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
+  other: {
+    google: "notranslate",
+  },
 };
 
 export const viewport: Viewport = {
@@ -167,9 +170,7 @@ const localBusinessSchema = {
       },
     ],
   },
-  sameAs: [
-    "https://www.instagram.com/rino_rinoo",
-  ],
+  sameAs: ["https://www.instagram.com/rino_rinoo"],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -180,7 +181,6 @@ const localBusinessSchema = {
   ],
 };
 
-// FAQ Schema — boost per Google Featured Snippets
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -226,8 +226,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it">
+    <html lang="it" translate="no">
       <head>
+        <meta name="google" content="notranslate" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
