@@ -48,6 +48,7 @@ export const projects: Project[] = [
       { type: "img", src: "/uploads/controfisi5.png",     alt: "Controsoffitto LED 5" },
       { type: "img", src: "/uploads/controfisi6.png",     alt: "Controsoffitto LED 6" },
       { type: "img", src: "/uploads/controfisi7.png",     alt: "Controsoffitto LED 7" },
+      { type: "img", src: "/uploads/controfisi8.png",     alt: "Controsoffitto LED 8" },
     ],
   },
   {
@@ -66,6 +67,8 @@ export const projects: Project[] = [
       { type: "img", src: "/uploads/parete2.png",         alt: "Parete attrezzata 2" },
       { type: "img", src: "/uploads/parete3.png",         alt: "Parete attrezzata 3" },
       { type: "img", src: "/uploads/parete4.png",         alt: "Parete attrezzata 4" },
+      { type: "img", src: "/uploads/pareti5.png",         alt: "Parete attrezzata 5" },
+      { type: "img", src: "/uploads/pareti6.png",         alt: "Parete attrezzata 6" },
     ],
   },
   {
@@ -146,21 +149,6 @@ export const services: Service[] = [
     galleryProjectIds: [1],
   },
   {
-    icon: "◈",
-    titleIT: "Frame LED Geometrici",
-    titleEN: "Geometric LED Frames",
-    descIT: "Cornici e forme geometriche a LED fissate a soffitto o a parete. Design su misura per showroom, uffici e spazi residenziali di lusso.",
-    descEN: "LED frames and geometric shapes mounted to ceiling or wall. Custom design for showrooms, offices, and luxury residential spaces.",
-    items: [
-      { it: "Rettangolari, trapezi, liberi", en: "Rectangular, trapezoidal, freeform" },
-      { it: "Cornici sovrapposte",           en: "Overlapping frames" },
-      { it: "Grande formato",                en: "Large format" },
-    ],
-    image:    "/images/service-frame.jpg",
-    imageAlt: "Frame LED geometrici showroom",
-    galleryProjectIds: [5],
-  },
-  {
     icon: "▣",
     titleIT: "Pareti Attrezzate",
     titleEN: "Feature Walls",
@@ -174,6 +162,21 @@ export const services: Service[] = [
     image:    "/uploads/fotocover_image.png",
     imageAlt: "Parete attrezzata in cartongesso con LED — Busca, Piemonte",
     galleryProjectIds: [2],
+  },
+  {
+    icon: "◈",
+    titleIT: "Frame LED Geometrici",
+    titleEN: "Geometric LED Frames",
+    descIT: "Cornici e forme geometriche a LED fissate a soffitto o a parete. Design su misura per showroom, uffici e spazi residenziali di lusso.",
+    descEN: "LED frames and geometric shapes mounted to ceiling or wall. Custom design for showrooms, offices, and luxury residential spaces.",
+    items: [
+      { it: "Rettangolari, trapezi, liberi", en: "Rectangular, trapezoidal, freeform" },
+      { it: "Cornici sovrapposte",           en: "Overlapping frames" },
+      { it: "Grande formato",                en: "Large format" },
+    ],
+    image:    "/images/service-frame.jpg",
+    imageAlt: "Frame LED geometrici showroom",
+    galleryProjectIds: [5],
   },
   {
     icon: "⬡",

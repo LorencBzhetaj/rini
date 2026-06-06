@@ -24,6 +24,8 @@ export default function Page() {
         { src: "/uploads/parete2.png", alt: "Libreria in cartongesso con nicchie illuminate" },
         { src: "/uploads/parete3.png", alt: "Pannello decorativo con LED integrato Busca" },
         { src: "/uploads/parete4.png", alt: "Parete attrezzata soggiorno Cuneo Piemonte" },
+        { src: "/uploads/pareti5.png", alt: "Parete TV con illuminazione LED indiretta" },
+        { src: "/uploads/pareti6.png", alt: "Parete attrezzata con pannelli e LED" },
       ]}
       serviceName="Pareti Attrezzate LED"
       serviceDescription="Pareti attrezzate in cartongesso con LED a Busca e Cuneo"

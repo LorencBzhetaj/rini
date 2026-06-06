@@ -25,6 +25,7 @@ export default function Page() {
         { src: "/uploads/controfisi3.png", alt: "Soffitto in cartongesso con LED Cuneo" },
         { src: "/uploads/controfisi4.png", alt: "Controsoffitto multi-livello Piemonte" },
         { src: "/uploads/controfisi5.png", alt: "Illuminazione LED indiretta soggiorno" },
+        { src: "/uploads/controfisi8.png", alt: "Controsoffitto con frame LED geometrico" },
       ]}
       serviceName="Controsoffitti LED"
       serviceDescription="Controsoffitti in cartongesso con LED a Busca e Cuneo"
