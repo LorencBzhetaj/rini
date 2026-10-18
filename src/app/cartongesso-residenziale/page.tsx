@@ -10,7 +10,7 @@ export default function Page() {
       titleEN="Plasterboard Works"
       titleLine2IT="Residenziale."
       titleLine2EN="Residential."
-      subtitleIT="Partizioni interne, contropareti e coibentazione acustica e termica per ristrutturazioni residenziali a Busca, Cuneo e in tutta la provincia di Piemonte. Rifinitura e stucco professionale."
+      subtitleIT="Partizioni interne, contropareti e coibentazione acustica e termica per ristrutturazioni residenziali a Busca, Cuneo e nella provincia di Cuneo, in Piemonte. Rifinitura e stucco professionale."
       subtitleEN="Internal partitions, counter-walls and acoustic and thermal insulation for residential renovations in Busca, Cuneo and throughout Piemonte. Professional stucco and finishing."
       descriptionIT="Il cartongesso residenziale è la soluzione più versatile ed efficiente per chi vuole ristrutturare o riorganizzare gli spazi interni. Realizziamo pareti divisorie, contropareti e sistemi di coibentazione acustica e termica con lastre certificate di alta qualità. La rifinitura a stucco e la verniciatura sono eseguite con cura artigianale."
       descriptionEN="Residential plasterboard is the most versatile and efficient solution for those who want to renovate or reorganise interior spaces. We install dividing walls, counter-walls and acoustic and thermal insulation systems using certified high-quality boards. Stucco finishing and painting are carried out with artisanal care."

@@ -1,0 +1,8 @@
+PASS / — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS /controsoffitti-led — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS /pareti-attrezzate — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS /frame-led-geometrici — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS /cartongesso-residenziale — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS /illuminazione-lineare — HTTP, metadata, H1, schema, contacts, initial HTML
+PASS 29 referenced public image assets exist
+PASS robots, sitemap, genuine 404 and permanent non-www redirect preserving path

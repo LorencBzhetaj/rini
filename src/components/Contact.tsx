@@ -2,10 +2,9 @@
 import { useForm, ValidationError } from "@formspree/react";
 import { useLang } from "@/lib/LangContext";
 import { PHONE, WHATSAPP_URL } from "@/lib/data";
-import Image from "next/image";
 
 export default function Contact() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const [state, handleSubmit] = useForm("xrejwpvl");
 
   const badges = [
@@ -54,23 +53,7 @@ export default function Contact() {
   return (
     <section id="contact" style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}>
 
-      {/* ── BACKGROUND IMAGE ── */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <Image
-          src="/images/contact-bg.jpg"
-          alt=""
-          fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          sizes="100vw"
-          aria-hidden="true"
-        />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(105deg, rgba(20,14,8,0.88) 0%, rgba(20,14,8,0.72) 50%, rgba(20,14,8,0.30) 100%)",
-        }} />
-      </div>
-
-      {/* ── CONTENT ── */}
+      {/* Contact content */}
       <div className="contact-inner" style={{ position: "relative", zIndex: 1 }}>
 
         {/* LEFT */}
@@ -86,7 +69,7 @@ export default function Contact() {
           </div>
 
           <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "var(--font-display), serif",
             fontSize: "clamp(2.6rem, 4.5vw, 4.2rem)",
             fontWeight: 300, lineHeight: 1.08,
             color: "#fff", marginBottom: "1rem",
@@ -109,7 +92,7 @@ export default function Contact() {
             marginBottom: "2.8rem", maxWidth: "380px",
           }}>
             {t(
-              "Raccontaci la tua idea. Operiamo a Busca, Cuneo e in tutta la provincia di Piemonte. Ti risponderemo entro 24 ore con una valutazione onesta e un preventivo gratuito.",
+              "Raccontaci la tua idea. Operiamo a Busca, Cuneo e nella provincia di Cuneo, in Piemonte. Ti risponderemo entro 24 ore con una valutazione onesta e un preventivo gratuito.",
               "Tell us about your idea. We operate in Busca, Cuneo and throughout Piemonte. We'll respond within 24 hours with an honest assessment and a free quote."
             )}
           </p>
@@ -200,7 +183,7 @@ export default function Contact() {
                   margin: "0 auto 1.5rem", fontSize: "1.4rem", color: "var(--gold)",
                 }}>✓</div>
                 <h3 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "var(--font-display), serif",
                   fontSize: "1.8rem", marginBottom: "0.75rem",
                   color: "var(--charcoal)", fontWeight: 400,
                 }}>
@@ -211,11 +194,11 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <form action="https://formspree.io/f/xrejwpvl" method="POST" onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 
                 {/* Hidden Formspree helper fields */}
                 <input type="hidden" name="_subject" value="Nuova richiesta preventivo — M.B Cartongesso" />
-                <input type="hidden" name="_language" value="it" />
+                <input type="hidden" name="_language" value={lang} />
 
                 <div className="cf-field">
                   <label htmlFor="name" className="cf-label">{t("Nome Completo", "Full Name")}</label>
@@ -322,13 +305,13 @@ export default function Contact() {
         .cf-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--charcoal, #3a3028); font-weight: 600; }
         .cf-input-wrap { position: relative; background: rgba(245,238,224,0.6); border: 1px solid rgba(180,145,80,0.2); border-radius: 10px; transition: border-color 0.2s, background 0.2s; }
         .cf-input-wrap:focus-within { border-color: rgba(180,145,80,0.55); background: rgba(255,252,245,0.9); }
-        .cf-input { background: transparent; border: none; outline: none; width: 100%; padding: 0.85rem 2.8rem 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--charcoal, #3a3028); border-radius: 10px; }
+        .cf-input { background: transparent; border: none; outline: none; width: 100%; padding: 0.85rem 2.8rem 0.85rem 1rem; font-family: var(--font-body), sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--charcoal, #3a3028); border-radius: 10px; }
         .cf-textarea { resize: none; min-height: 110px; padding-right: 2.8rem; }
         .cf-textarea-wrap { align-items: flex-start; }
         .cf-input::placeholder { color: rgba(100,80,60,0.4); }
         .cf-icon { position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%); color: rgba(150,120,70,0.5); display: flex; pointer-events: none; }
         .cf-icon--textarea { top: 0.9rem; transform: none; }
-        .cf-submit { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%; background: #2c1f0e; color: #fff; border: none; border-radius: 10px; padding: 1.05rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, transform 0.2s; margin-top: 0.2rem; }
+        .cf-submit { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%; background: #2c1f0e; color: #fff; border: none; border-radius: 10px; padding: 1.05rem 1.8rem; font-family: var(--font-body), sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, transform 0.2s; margin-top: 0.2rem; }
         .cf-submit:hover { background: #3d2a10; transform: translateY(-1px); }
         .cf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         .wa-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(200,155,80,0.35); color: #fff; text-decoration: none; padding: 0.85rem 1.6rem; border-radius: 100px; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.02em; transition: background 0.25s, border-color 0.25s; max-width: 320px; }

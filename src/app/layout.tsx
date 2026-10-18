@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { LangProvider } from "@/lib/LangContext";
-import ScrollToTop from "@/components/ScrollToTop";
 
 const BASE_URL = "https://www.mbcartongesso.com";
+const displayFont = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-display", display: "swap" });
+const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -13,23 +16,6 @@ export const metadata: Metadata = {
   },
   description:
     "Specialisti in controsoffitti in cartongesso con LED integrati a Busca e Cuneo. Pareti attrezzate, illuminazione lineare, lavori residenziali e commerciali in Piemonte. Preventivo gratuito.",
-  keywords: [
-    "cartongesso Busca",
-    "cartongesso Cuneo",
-    "controsoffitti LED Busca",
-    "controsoffitti in cartongesso Cuneo",
-    "pareti in cartongesso",
-    "lavori in cartongesso Piemonte",
-    "ristrutturazioni interne Busca",
-    "illuminazione LED Cuneo",
-    "drywall company Busca Italy",
-    "plasterboard company Cuneo",
-    "M.B Cartongesso",
-    "preventivo cartongesso gratuito",
-    "controsoffitti Piemonte",
-    "cartongesso Cuneo provincia",
-    "illuminazione indiretta LED Piemonte",
-  ],
   authors: [{ name: "M.B Cartongesso" }],
   creator: "M.B Cartongesso",
   publisher: "M.B Cartongesso",
@@ -47,7 +33,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "it_IT",
-    alternateLocale: "en_GB",
     url: BASE_URL,
     siteName: "M.B Cartongesso",
     title: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo",
@@ -56,8 +41,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
+        width: 1269,
+        height: 952,
         alt: "M.B Cartongesso — Controsoffitti LED a Busca, Cuneo, Piemonte",
       },
     ],
@@ -100,24 +85,15 @@ const localBusinessSchema = {
   description:
     "Specialisti in controsoffitti in cartongesso con sistemi LED integrati a Busca e Cuneo. Pareti attrezzate, illuminazione lineare e lavori residenziali e commerciali in Piemonte.",
   url: BASE_URL,
-  logo: `${BASE_URL}/images/logo.png`,
+  logo: `${BASE_URL}/images/logo-transparent.png`,
   image: `${BASE_URL}/images/og-image.jpg`,
   telephone: "+393889995326",
-  priceRange: "€€",
-  currenciesAccepted: "EUR",
-  paymentAccepted: "Cash, Bank Transfer",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Busca",
     addressLocality: "Busca",
     addressRegion: "Piemonte",
     postalCode: "12022",
     addressCountry: "IT",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 44.5233,
-    longitude: 7.4742,
   },
   areaServed: [
     { "@type": "City", name: "Busca" },
@@ -176,53 +152,6 @@ const localBusinessSchema = {
     ],
   },
   sameAs: ["https://www.instagram.com/rino_rinoo"],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "18:00",
-    },
-  ],
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Quanto costa un controsoffitto in cartongesso con LED a Busca?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Il costo dipende dalla metratura, dal numero di livelli e dal sistema LED scelto. Offriamo preventivi gratuiti e trasparenti. Contattaci per una valutazione personalizzata.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Operate solo a Busca o anche in tutta la provincia di Cuneo?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Operiamo a Busca, Cuneo e in tutta la provincia di Piemonte. Contattaci per verificare la disponibilità nella tua zona.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quanto tempo richiede la posa di un controsoffitto?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "I tempi variano in base alla complessità del progetto. Un controsoffitto standard in un soggiorno richiede generalmente 2-4 giorni lavorativi.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Realizzate anche lavori commerciali oltre che residenziali?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sì, realizziamo progetti sia residenziali che commerciali: showroom, uffici, negozi e spazi di lusso con frame LED geometrici su misura.",
-      },
-    },
-  ],
 };
 
 export default function RootLayout({
@@ -231,7 +160,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it" translate="no">
+    <html lang="it" translate="no" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <head>
         <meta name="google" content="notranslate" />
         <script
@@ -240,16 +169,17 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
-          }}
-        />
       </head>
       <body>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-RD2N0DV1T9" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RD2N0DV1T9');
+        `}</Script>
+        <a className="skip-link" href="#main-content">Vai al contenuto</a>
         <LangProvider>
-          <ScrollToTop />
           {children}
         </LangProvider>
       </body>

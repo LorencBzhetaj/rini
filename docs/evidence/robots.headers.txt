@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Access-Control-Allow-Origin: *
+Age: 0
+Cache-Control: public, max-age=0, must-revalidate
+Content-Disposition: inline; filename="robots.txt"
+Content-Length: 145
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://formspree.io; frame-ancestors 'none'
+Content-Type: text/plain; charset=utf-8
+Date: Sun, 18 Oct 2026 03:08:54 GMT
+Etag: "bd447b1d14353a11486d98029960b2bb"
+Last-Modified: Sun, 18 Oct 2026 03:08:54 GMT
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Referrer-Policy: strict-origin-when-cross-origin
+Server: Vercel
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Matched-Path: /robots.txt
+X-Vercel-Cache: HIT
+X-Vercel-Id: fra1::kqfgm-1792292934546-03b87b1a8581
+

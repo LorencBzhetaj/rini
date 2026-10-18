@@ -36,8 +36,8 @@ export const projects: Project[] = [
     catEN: "Residential — 2025",
     titleIT: "Controsoffitti LED",
     titleEN: "LED Drop Ceilings",
-    descIT: "Controsoffitti eleganti con profili LED integrati. Luce indiretta perimetrale e profili lineari incassati per un effetto scenografico di grande impatto.",
-    descEN: "Elegant drop ceilings with integrated LED profiles. Perimeter indirect light and recessed linear profiles for a high-impact scenic effect.",
+    descIT: "Una raccolta di lavorazioni in cartongesso con profili LED integrati: luce indiretta perimetrale, cornici e linee incassate. Le immagini mostrano soluzioni diverse.",
+    descEN: "A collection of drywall ceilings with integrated LED profiles: indirect perimeter lighting, frames and recessed lines. The images show different solutions.",
     coverImage: "/uploads/controfisicover.png",
     media: [
       { type: "img", src: "/uploads/controfisicover.png", alt: "Controsoffitto LED cover" },
@@ -58,8 +58,8 @@ export const projects: Project[] = [
     catEN: "Residential — 2025",
     titleIT: "Pareti Attrezzate & LED",
     titleEN: "Feature Walls & LED",
-    descIT: "Pareti TV in cartongesso con pannelli decorativi e illuminazione LED integrata. Materiali pregiati e finiture impeccabili per ogni ambiente.",
-    descEN: "Drywall TV walls with decorative panels and integrated LED lighting. Premium materials and impeccable finishes for every environment.",
+    descIT: "Una raccolta di pareti TV e pareti attrezzate in cartongesso con pannelli decorativi e illuminazione LED integrata. Le immagini mostrano soluzioni diverse.",
+    descEN: "A collection of drywall TV and feature walls with decorative panels and integrated LED lighting. The images show different solutions.",
     coverImage: "/uploads/fotocover_image.png",
     media: [
       { type: "img", src: "/uploads/fotocover_image.png", alt: "Parete attrezzata cover" },

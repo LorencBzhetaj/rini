@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+Host: https://www.mbcartongesso.com
+Sitemap: https://www.mbcartongesso.com/sitemap.xml

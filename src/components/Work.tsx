@@ -1,227 +1,30 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useLang } from "@/lib/LangContext";
-import { projects } from "@/lib/data";
+import { projects, Project } from "@/lib/data";
+import ProjectModal from "./ProjectModal";
 
 export default function Work() {
   const { t } = useLang();
-  const [hovered, setHovered] = useState<string | null>(null);
-
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (trackRef.current?.offsetLeft ?? 0));
-    setScrollLeft(trackRef.current?.scrollLeft ?? 0);
-  };
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !trackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - (trackRef.current.offsetLeft ?? 0);
-    trackRef.current.scrollLeft = scrollLeft - (x - startX) * 1.5;
-  };
-  const stopDrag = () => setIsDragging(false);
-
-  // Flat list: one card per media item
-  const cards = projects.flatMap((project) =>
-    project.media.map((media, mediaIndex) => ({
-      id: `${project.id}-${mediaIndex}`,
-      project,
-      media,
-      mediaIndex,
-    }))
-  );
-
+  const [selected, setSelected] = useState<Project | null>(null);
   return (
-    <section id="work" style={{ padding: "8rem 0", background: "var(--white)" }}>
-
-      {/* Header */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        marginBottom: "3.5rem",
-        gap: "2rem",
-        flexWrap: "wrap",
-        padding: "0 3rem",
-      }}>
-        <div>
-          <div style={{
-            display: "flex", alignItems: "center", gap: "0.7rem",
-            fontSize: "0.65rem", fontWeight: 500,
-            letterSpacing: "0.22em", textTransform: "uppercase",
-            color: "var(--gold)", marginBottom: "1.2rem",
-          }}>
-            <span style={{ display: "block", width: "24px", height: "1px", background: "var(--gold)" }} />
-            {t("Progetti Selezionati", "Selected Projects")}
-          </div>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(2rem, 3.5vw, 3.4rem)",
-            fontWeight: 300, lineHeight: 1.12,
-          }}>
-            {t("I Nostri ", "Our ")}
-            <em style={{ fontStyle: "italic", color: "var(--warm-brown)" }}>
-              {t("Lavori", "Work")}
-            </em>
-          </h2>
-        </div>
-        <p style={{
-          fontSize: "0.83rem", color: "var(--text-muted)",
-          fontWeight: 300, lineHeight: 1.8, textAlign: "right",
-        }}>
-          ← {t("scorri per vedere", "drag to explore")} →
-        </p>
+    <section id="work" className="section work-section">
+      <div className="section-heading">
+        <div><p className="eyebrow">01 / {t("Lavori e dettagli", "Work and details")}</p><h2>{t("La luce, fatta", "Light, made")} <em>{t("materia.", "tangible.")}</em></h2></div>
+        <p>{t("Una selezione dei nostri lavori. Apri le raccolte per osservare soluzioni, dettagli e fasi di posa.", "A selection of our work. Open each collection to explore solutions, details and installation stages.")}</p>
       </div>
-
-      {/* Scroll Track */}
-      <div
-        ref={trackRef}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={stopDrag}
-        onMouseLeave={stopDrag}
-        style={{
-          display: "flex",
-          gap: "1.25rem",
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          scrollbarWidth: "none",
-          padding: "0 3rem 2rem",
-          cursor: isDragging ? "grabbing" : "grab",
-        }}
-      >
-        {cards.map(({ id, project, media }) => (
-          <article
-            key={id}
-            onMouseEnter={() => setHovered(id)}
-            onMouseLeave={() => setHovered(null)}
-            style={{
-              scrollSnapAlign: "start",
-              flexShrink: 0,
-              width: "clamp(280px, 35vw, 420px)",
-              background: "var(--ivory-dark)",
-              border: "1px solid var(--border)",
-              borderRadius: "12px",
-              overflow: "hidden",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              transform: hovered === id ? "translateY(-4px)" : "translateY(0)",
-              boxShadow: hovered === id
-                ? "0 20px 50px rgba(107,76,42,0.12)"
-                : "0 0 0 transparent",
-            }}
-          >
-            {/* Image or Video */}
-            <div style={{
-              aspectRatio: "4/3",
-              overflow: "hidden",
-              position: "relative",
-              borderRadius: "12px 12px 0 0",
-            }}>
-              {media.type === "video" ? (
-                <video
-                  src={media.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  style={{
-                    width: "100%", height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.6s ease",
-                    transform: hovered === id ? "scale(1.06)" : "scale(1)",
-                  }}
-                />
-              ) : (
-                <Image
-                  src={media.src}
-                  alt={t(project.titleIT, project.titleEN)}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    transition: "transform 0.6s ease, filter 0.4s",
-                    transform: hovered === id ? "scale(1.06)" : "scale(1)",
-                    filter: hovered === id ? "brightness(0.7)" : "brightness(0.95)",
-                  }}
-                  sizes="(max-width: 900px) 100vw, 33vw"
-                />
-              )}
-
-              {/* Video badge */}
-              {media.type === "video" && (
-                <div style={{
-                  position: "absolute", top: "0.75rem", right: "0.75rem",
-                  background: "rgba(42,34,24,0.75)",
-                  color: "var(--ivory)",
-                  fontSize: "0.65rem", letterSpacing: "0.08em",
-                  padding: "0.2rem 0.5rem", borderRadius: "4px",
-                }}>
-                  🎬 Video
-                </div>
-              )}
-
-              {/* Hover overlay */}
-              <div style={{
-                position: "absolute", inset: 0,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                opacity: hovered === id ? 1 : 0,
-                transition: "opacity 0.35s",
-                background: "rgba(42,34,24,0.15)",
-                pointerEvents: "none",
-              }}>
-                <div style={{
-                  background: "var(--ivory)",
-                  color: "var(--warm-brown)",
-                  fontSize: "0.72rem", fontWeight: 500,
-                  letterSpacing: "0.1em", textTransform: "uppercase",
-                  padding: "0.55rem 1.3rem", borderRadius: "4px",
-                  transform: hovered === id ? "translateY(0)" : "translateY(8px)",
-                  transition: "transform 0.3s ease",
-                }}>
-                  {t("Vedi Dettagli", "View Details")}
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div style={{ padding: "1.4rem 1.5rem 1.7rem" }}>
-              <div style={{
-                fontSize: "0.65rem", fontWeight: 500,
-                letterSpacing: "0.16em", textTransform: "uppercase",
-                color: "var(--gold)", marginBottom: "0.4rem",
-              }}>
-                {t(project.catIT, project.catEN)}
-              </div>
-              <h3 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "1.1rem", fontWeight: 400,
-                color: "var(--charcoal)", marginBottom: "0.45rem",
-              }}>
-                {t(project.titleIT, project.titleEN)}
-              </h3>
-              <p style={{
-                fontSize: "0.8rem", color: "var(--text-muted)",
-                fontWeight: 300, lineHeight: 1.7,
-              }}>
-                {t(project.descIT, project.descEN).slice(0, 110)}…
-              </p>
-            </div>
+      <div className="work-grid">
+        {projects.map((project, index) => (
+          <article className={`work-card ${index < 2 ? "work-card-featured" : ""}`} key={project.id}>
+            <details><summary className="work-open" onClick={event => {event.preventDefault(); setSelected(project);}} aria-label={`${t("Apri raccolta", "Open collection")}: ${t(project.titleIT, project.titleEN)}`}>
+              <span className="work-image"><Image src={project.coverImage} alt={t(project.titleIT, project.titleEN)} fill sizes="(max-width: 600px) 100vw, 50vw" /><span className="album-count">{project.media.length} {project.media.length === 1 ? t("foto", "photo") : t("foto", "photos")} <span aria-hidden="true">↗</span></span></span>
+              <span className="work-caption"><span><span className="eyebrow">{String(index + 1).padStart(2, "0")} / {index < 2 ? t("Raccolta lavori", "Work collection") : t("Dettagli del lavoro", "Work details")}</span><span className="work-title">{t(project.titleIT, project.titleEN)}</span></span><span aria-hidden="true">↗</span></span>
+            </summary><ul className="album-fallback">{project.media.map((media,index) => <li key={media.src}><a href={media.src}>{media.alt || `${t("Foto", "Photo")} ${index+1}`} ↗</a></li>)}</ul></details>
           </article>
         ))}
       </div>
-
-      <style>{`
-        #work div[style*="overflow-x"]::-webkit-scrollbar { display: none; }
-        @media (max-width: 768px) {
-          #work { padding: 5rem 0 !important; }
-          #work > div:first-child { padding: 0 1.5rem !important; }
-          #work > div:nth-child(2) { padding: 0 1.5rem 2rem !important; }
-        }
-      `}</style>
+      {selected && <ProjectModal key={selected.id} project={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }

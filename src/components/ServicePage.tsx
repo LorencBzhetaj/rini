@@ -48,17 +48,17 @@ export default function ServicePage({
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="service-page">
         {/* ── HERO ── */}
         <section style={{ position: "relative", minHeight: "70vh", display: "flex", alignItems: "center", overflow: "hidden", background: "var(--charcoal)" }}>
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-            <Image src={heroImage} alt={heroImageAlt} fill style={{ objectFit: "cover", objectPosition: "center", opacity: 0.35 }} priority sizes="100vw" />
+            <Image src={heroImage} alt={heroImageAlt} fill style={{ objectFit: "cover", objectPosition: "center", opacity: 0.35 }} preload sizes="100vw" />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(20,14,8,0.85) 0%, rgba(20,14,8,0.4) 100%)" }} />
           </div>
 
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: "10rem 3rem 6rem", width: "100%" }}>
             {/* Breadcrumb */}
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "1.8rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", marginBottom: "1.8rem" }}>
               <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>Home</Link>
               <span>›</span>
               <Link href="/#services" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>{t("Servizi", "Services")}</Link>
@@ -73,7 +73,7 @@ export default function ServicePage({
             </div>
 
             {/* Title */}
-            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.8rem, 5vw, 5rem)", fontWeight: 300, lineHeight: 1.05, color: "#fff", marginBottom: "1.6rem" }}>
+            <h1 style={{ fontFamily: "var(--font-display), serif", fontSize: "clamp(2.8rem, 5vw, 5rem)", fontWeight: 300, lineHeight: 1.05, color: "#fff", marginBottom: "1.6rem" }}>
               {titleEN ? t(titleIT, titleEN) : titleIT}<br />
               <em style={{ fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
                 {titleLine2EN ? t(titleLine2IT, titleLine2EN) : titleLine2IT}
@@ -90,7 +90,7 @@ export default function ServicePage({
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "var(--warm-brown)", color: "#fff", padding: "0.9rem 2rem", textDecoration: "none", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", transition: "background 0.25s" }}
                 onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = "var(--charcoal)"}
                 onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = "var(--warm-brown)"}>
-                💬 {t("Preventivo Gratuito", "Free Quote")}
+                {t("Preventivo Gratuito", "Free Quote")}
               </a>
               <a href="#gallery" style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", border: "1px solid rgba(200,165,88,0.4)", color: "rgba(255,255,255,0.8)", padding: "0.9rem 2rem", textDecoration: "none", fontSize: "0.75rem", fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase" }}>
                 {t("Vedi Progetti", "View Projects")} →
@@ -108,7 +108,7 @@ export default function ServicePage({
                 <span style={{ display: "block", width: "20px", height: "1px", background: "var(--warm-brown)" }} />
                 {t("Il Servizio", "The Service")}
               </div>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 3vw, 2.8rem)", fontWeight: 300, lineHeight: 1.15, color: "var(--charcoal)", marginBottom: "1.5rem" }}>
+              <h2 style={{ fontFamily: "var(--font-display), serif", fontSize: "clamp(2rem, 3vw, 2.8rem)", fontWeight: 300, lineHeight: 1.15, color: "var(--charcoal)", marginBottom: "1.5rem" }}>
                 {t("Realizzato con", "Crafted with")} <em style={{ fontStyle: "italic", color: "var(--warm-brown)" }}>{t("precisione", "precision")}</em>
               </h2>
               <p style={{ fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.9, color: "var(--text-muted)" }}>
@@ -130,7 +130,7 @@ export default function ServicePage({
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {benefits.map((b, i) => (
                   <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.2rem 1.4rem", background: "rgba(107,76,42,0.04)", border: "1px solid var(--border)", borderLeft: "3px solid var(--gold)" }}>
-                    <span style={{ color: "var(--gold)", minWidth: "24px", fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}>
+                    <span style={{ color: "var(--gold)", minWidth: "24px", fontFamily: "var(--font-display), serif", fontSize: "1rem" }}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span style={{ fontSize: "0.88rem", fontWeight: 300, color: "var(--charcoal)", lineHeight: 1.6 }}>{b}</span>
@@ -149,10 +149,10 @@ export default function ServicePage({
                 <span style={{ display: "block", width: "20px", height: "1px", background: "var(--warm-brown)" }} />
                 {t("Progetti Realizzati", "Completed Projects")}
               </div>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 3vw, 2.6rem)", fontWeight: 300, color: "var(--charcoal)", marginBottom: "3rem" }}>
+              <h2 style={{ fontFamily: "var(--font-display), serif", fontSize: "clamp(1.8rem, 3vw, 2.6rem)", fontWeight: 300, color: "var(--charcoal)", marginBottom: "3rem" }}>
                 {t("I nostri", "Our")} <em style={{ fontStyle: "italic", color: "var(--warm-brown)" }}>{t("lavori", "work")}</em>
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.5rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))", gap: "1.5rem" }}>
                 {galleryImages.map((img, i) => (
                   <div key={i} style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", background: "var(--charcoal)" }}>
                     <Image src={img.src} alt={img.alt} fill

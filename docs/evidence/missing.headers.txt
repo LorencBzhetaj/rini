@@ -1,0 +1,22 @@
+HTTP/1.1 404 Not Found
+Accept-Ranges: bytes
+Access-Control-Allow-Origin: *
+Age: 169330
+Cache-Control: public, max-age=0, must-revalidate
+Content-Disposition: inline; filename="404"
+Content-Length: 22882
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://formspree.io; frame-ancestors 'none'
+Content-Type: text/html; charset=utf-8
+Date: Sun, 18 Oct 2026 03:08:56 GMT
+Etag: "b9b3dc4d45f322402d596e8f63f40bce"
+Last-Modified: Fri, 16 Oct 2026 04:06:45 GMT
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Referrer-Policy: strict-origin-when-cross-origin
+Server: Vercel
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Matched-Path: /404
+X-Vercel-Cache: HIT
+X-Vercel-Id: fra1::4m8j4-1792292936426-cf879aa32f2a
+

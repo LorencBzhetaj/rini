@@ -1,6 +1,6 @@
 "use client";
 import { useLang } from "@/lib/LangContext";
-import { PHONE, WHATSAPP_URL } from "@/lib/data";
+import { PHONE } from "@/lib/data";
 
 export default function Footer() {
   const { t } = useLang();
@@ -25,13 +25,13 @@ export default function Footer() {
       >
         <div
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "var(--font-display), serif",
             fontSize: "1.05rem",
             fontStyle: "italic",
             color: "var(--warm-brown)",
           }}
         >
-          Mr. Cartongesso
+          M.B Cartongesso
         </div>
 
         <nav aria-label="Link footer">
@@ -44,10 +44,10 @@ export default function Footer() {
             }}
           >
             {[
-              { href: "#services", it: "Servizi", en: "Services" },
-              { href: "#why", it: "Chi Siamo", en: "Why Us" },
-              { href: "#work", it: "Lavori", en: "Work" },
-              { href: "#contact", it: "Contatti", en: "Contact" },
+              { href: "/#services", it: "Servizi", en: "Services" },
+              { href: "/#why", it: "Chi Siamo", en: "Why Us" },
+              { href: "/#work", it: "Lavori", en: "Work" },
+              { href: "/#contact", it: "Contatti", en: "Contact" },
             ].map((link) => (
               <li key={link.href}>
                 <a
@@ -104,46 +104,11 @@ export default function Footer() {
             </a>
           </div>
           <div style={{ fontSize: "0.73rem", color: "var(--text-light)" }}>
-            © {year} Mr. Cartongesso —{" "}
+            © {year} M.B Cartongesso —{" "}
             {t("Tutti i diritti riservati", "All rights reserved")} · Italia
           </div>
         </div>
       </div>
-
-      {/* Structured data for local business */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HomeAndConstructionBusiness",
-            "@id": "https://www.mrcartongesso.it/#business",
-            name: "M.B Cartongesso",
-            alternateName: "Mr. Cartongesso",
-            url: "https://www.mrcartongesso.it",
-            logo: "https://www.mrcartongesso.it/images/logo.png",
-            telephone: "+393889995326",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Busca",
-              addressRegion: "Piemonte",
-              postalCode: "12022",
-              addressCountry: "IT",
-            },
-            areaServed: ["Busca", "Cuneo", "Piemonte"],
-            contactPoint: {
-              "@type": "ContactPoint",
-              telephone: "+393889995326",
-              contactType: "customer service",
-              availableLanguage: ["Italian", "English"],
-            },
-            sameAs: [
-              `${WHATSAPP_URL}`,
-              "https://www.instagram.com/rino_rinoo",
-            ],
-          }),
-        }}
-      />
 
       <style>{`
         @media (max-width: 900px) {
