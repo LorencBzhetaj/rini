@@ -228,3 +228,10 @@ footer a { display: inline-block; min-height: 44px; align-content: center; text-
   .brand > span { font-size: 1rem; }
   .menu-toggle { width: 44px; }
 }
+
+.service-faq { padding: 6rem 3rem; background: var(--ivory-dark); }
+.service-faq h2 { font-family: var(--font-display), serif; font-size: clamp(2rem, 4vw, 3rem); margin: 1rem 0 2rem; font-weight: 400; }
+.service-faq details { border-top: 1px solid var(--border); padding: 1.3rem 0; }
+.service-faq details:last-child { border-bottom: 1px solid var(--border); }
+.service-faq summary { cursor: pointer; font-size: 1.05rem; font-weight: 500; line-height: 1.5; }
+.service-faq details p { color: var(--text-muted); line-height: 1.8; max-width: 760px; margin-top: 1rem; }

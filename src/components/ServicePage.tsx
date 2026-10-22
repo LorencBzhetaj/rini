@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { serviceFaqs } from "@/lib/serviceFaqs";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import { WHATSAPP_URL } from "@/lib/data";
@@ -37,7 +38,7 @@ export default function ServicePage({
   benefitsIT, benefitsEN,
   heroImage, heroImageAlt,
   galleryImages,
-  relatedServices,
+  relatedServices, serviceName,
 }: ServicePageProps) {
   const { t } = useLang();
 
@@ -78,6 +79,7 @@ export default function ServicePage({
               <em style={{ fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
                 {titleLine2EN ? t(titleLine2IT, titleLine2EN) : titleLine2IT}
               </em>
+              <span style={{ display: "block", fontSize: "0.5em", marginTop: "0.6em" }}>{t("a Busca e Cuneo", "in Busca and Cuneo")}</span>
             </h1>
 
             <p style={{ fontSize: "1rem", fontWeight: 300, lineHeight: 1.8, color: "rgba(255,255,255,0.72)", maxWidth: "560px", marginBottom: "2.5rem" }}>
@@ -166,6 +168,19 @@ export default function ServicePage({
             </div>
           </section>
         )}
+
+        <section className="service-faq" aria-labelledby="service-faq-title">
+          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+            <p className="eyebrow">FAQ · {badgeEN ? t(badge, badgeEN) : badge}</p>
+            <h2 id="service-faq-title">{t("Domande frequenti", "Frequently asked questions")}</h2>
+            {(serviceFaqs[serviceName] ?? []).map((faq) => (
+              <details key={faq.qIT}>
+                <summary>{t(faq.qIT, faq.qEN)}</summary>
+                <p>{t(faq.aIT, faq.aEN)}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         {/* ── RELATED SERVICES ── */}
         <section style={{ background: "var(--ivory)", padding: "5rem 3rem", borderTop: "1px solid var(--border)" }}>
