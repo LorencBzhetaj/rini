@@ -6,7 +6,7 @@ export default function Page() {
     <ServicePage
       badge="Cartongesso Residenziale"
       badgeEN="Residential Plasterboard"
-      titleIT="Lavori in Cartongesso"
+      titleIT="Pareti in cartongesso"
       titleEN="Plasterboard Works"
       titleLine2IT="Residenziale."
       titleLine2EN="Residential."

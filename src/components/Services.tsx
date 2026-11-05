@@ -17,6 +17,11 @@ export default function Services() {
           <Link className="service-image" href={`/${paths[index]}`} tabIndex={-1} aria-hidden="true"><Image src={service.image} alt="" fill sizes="(max-width: 600px) 40vw, 240px" /></Link>
         </article>
       ))}</div>
+      <nav aria-label={t("Approfondimenti sul cartongesso", "More about drywall")} style={{ display: "flex", flexWrap: "wrap", gap: "0 1.5rem", marginTop: "2rem" }}>
+        <Link className="text-link" href="/cartongesso-su-misura">{t("Cartongesso su misura", "Bespoke drywall")} →</Link>
+        <Link className="text-link" href="/montaggio-cartongesso">{t("Montaggio cartongesso", "Drywall installation")} →</Link>
+        <Link className="text-link" href="/cartongesso-prezzo-al-mq">{t("Cartongesso: prezzo al mq", "Drywall cost per square metre")} →</Link>
+      </nav>
     </section>
   );
 }

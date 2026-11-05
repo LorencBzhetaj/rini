@@ -24,9 +24,9 @@ export default function Contact() {
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
         </svg>
       ),
-      label: t("Zona Operativa", "Operating Area"),
-      value: "Busca, Cuneo, Piemonte",
-      href: undefined,
+      label: t("Zona operativa · Google Maps", "Service area · Google Maps"),
+      value: t("Busca, Cuneo e dintorni", "Busca, Cuneo and nearby areas"),
+      href: "https://www.google.com/maps/place/M.B+Cartongesso/data=!4m2!3m1!1s0x0:0xebf65f137d3296ed",
     },
     {
       icon: (
@@ -92,8 +92,8 @@ export default function Contact() {
             marginBottom: "2.8rem", maxWidth: "380px",
           }}>
             {t(
-              "Raccontaci la tua idea. Operiamo a Busca, Cuneo e nella provincia di Cuneo, in Piemonte. Ti risponderemo entro 24 ore con una valutazione onesta e un preventivo gratuito.",
-              "Tell us about your idea. We operate in Busca, Cuneo and throughout Piemonte. We'll respond within 24 hours with an honest assessment and a free quote."
+              "Raccontaci la tua idea. Lavoriamo a Busca, Cuneo e nei comuni limitrofi. Ti risponderemo entro 24 ore con una valutazione e un preventivo gratuito.",
+              "Tell us about your idea. We work in Busca, Cuneo and nearby towns. We'll respond within 24 hours with an assessment and a free quote."
             )}
           </p>
 

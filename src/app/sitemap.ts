@@ -10,5 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/frame-led-geometrici`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/cartongesso-residenziale`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/illuminazione-lineare`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/cartongesso-su-misura` },
+    { url: `${BASE_URL}/montaggio-cartongesso` },
+    { url: `${BASE_URL}/cartongesso-prezzo-al-mq` },
   ];
 }
