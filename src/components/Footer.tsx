@@ -1,6 +1,18 @@
 "use client";
 import { useLang } from "@/lib/LangContext";
+import Link from "next/link";
 import { PHONE } from "@/lib/data";
+
+const SERVICE_LINKS = [
+  { href: "/controsoffitti-led", it: "Controsoffitti LED", en: "LED ceilings" },
+  { href: "/pareti-attrezzate", it: "Pareti attrezzate", en: "Feature walls" },
+  { href: "/frame-led-geometrici", it: "Frame LED geometrici", en: "Geometric LED frames" },
+  { href: "/illuminazione-lineare", it: "Illuminazione lineare LED", en: "Linear LED lighting" },
+  { href: "/cartongesso-residenziale", it: "Pareti in cartongesso", en: "Drywall partitions" },
+  { href: "/cartongesso-su-misura", it: "Cartongesso su misura", en: "Bespoke drywall" },
+  { href: "/montaggio-cartongesso", it: "Montaggio cartongesso", en: "Drywall installation" },
+  { href: "/cartongesso-prezzo-al-mq", it: "Cartongesso: prezzo al mq", en: "Drywall cost per m²" },
+];
 
 export default function Footer() {
   const { t } = useLang();
@@ -109,6 +121,21 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <nav
+        aria-label={t("Servizi in cartongesso", "Drywall services")}
+        style={{ borderTop: "1px solid var(--border)", marginTop: "1.8rem", paddingTop: "1.4rem" }}
+      >
+        <ul style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1.6rem", listStyle: "none", margin: 0, padding: 0 }}>
+          {SERVICE_LINKS.map((link) => (
+            <li key={link.href} style={{ listStyle: "none" }}>
+              <Link href={link.href} style={{ fontSize: "0.75rem", color: "var(--text-muted)", textDecoration: "none" }}>
+                {t(link.it, link.en)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <style>{`
         @media (max-width: 900px) {

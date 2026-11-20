@@ -18,7 +18,11 @@ export default function Page() {
       benefitsEN={["Fully flush recessed profiles: invisible when off","Flat, sloped and structured ceilings without limits","Straight, diagonal and crossed lines for any design","LED CRI 90+ for natural and faithful colour rendering","Dimmer and CCT systems to adjust colour and intensity","Clean and precise installation with perfect finishes"]}
       heroImage="/uploads/controfisicover.png"
       heroImageAlt="Profili LED lineari incassati nel soffitto — M.B Cartongesso Busca"
-      galleryImages={[]}
+      galleryImages={[
+        { src: "/images/proj3-cover.jpg", alt: "Profili LED lineari diagonali e luce perimetrale in un soggiorno" },
+        { src: "/images/proj6-cover.jpg", alt: "Profili LED lineari su controsoffitto a livelli in cucina" },
+        { src: "/images/proj2-cover.jpg", alt: "Linee LED a incasso nel controsoffitto di un ingresso con parete TV" },
+      ]}
       serviceName="Illuminazione Lineare LED"
       serviceDescription="Illuminazione lineare LED a incasso a Busca e Cuneo"
       relatedServices={[

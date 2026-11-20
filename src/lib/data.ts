@@ -111,7 +111,7 @@ export const projects: Project[] = [
     coverImage: "/images/proj5-cover.jpg",
     media: [
       { type: "img", src: "/images/proj5-cover.jpg", alt: "Frame LED geometrici showroom" },
-      { type: "img", src: "/images/proj5-b.jpg",     alt: "Cornici LED sovrapposte" },
+      { type: "img", src: "/images/proj6-wip.jpg",   alt: "Cornici LED geometriche sovrapposte nel soffitto di un negozio" },
     ],
   },
   {
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     descEN: "Structured coffered ceiling with LED profiles integrated along the recess edges. The first photo shows the structure during installation, the second the final result with LEDs on.",
     coverImage: "/images/proj6-cover.jpg",
     media: [
-      { type: "img", src: "/images/proj6-wip.jpg",   alt: "Struttura cartongesso in posa" },
+      { type: "img", src: "/images/proj5-b.jpg",     alt: "Struttura del soffitto a livelli in cartongesso in cucina, durante la posa" },
       { type: "img", src: "/images/proj6-cover.jpg", alt: "Cucina con soffitto LED finito" },
     ],
   },

@@ -17,7 +17,7 @@ export default function Navbar() {
   const close = () => menu.current?.close();
   return <>
     <header className="site-header">
-      <Link className="brand" href="/#home" aria-label="M.B Cartongesso — home"><Image src="/images/logo-transparent.png" alt="" width={64} height={49} /><span>M.B Cartongesso<small>Cartongesso & LED</small></span></Link>
+      <Link className="brand" href="/#home" aria-label="M.B Cartongesso — home"><Image src="/images/logo-transparent.png" alt="Logo M.B Cartongesso" width={64} height={49} /><span>M.B Cartongesso<small>Cartongesso & LED</small></span></Link>
       <nav className="desktop-nav" aria-label={t("Navigazione principale", "Main navigation")}>{links.map(link => <Link href={link.href} key={link.href}>{t(link.it,link.en)}</Link>)}</nav>
       <div className="header-controls"><div className="languages" role="group" aria-label={t("Lingua", "Language")}>{(["it","en"] as const).map(language => <button key={language} onClick={() => setLang(language)} aria-pressed={lang === language} lang={language} aria-label={language === "it" ? "Italiano" : "English"}>{language.toUpperCase()}</button>)}</div><a className="header-quote" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">{t("Parliamone", "Let's talk")} ↗</a><button className="menu-toggle icon-button" aria-label={t("Apri menu", "Open menu")} aria-haspopup="dialog" onClick={() => menu.current?.showModal()}>☰</button></div>
     </header>

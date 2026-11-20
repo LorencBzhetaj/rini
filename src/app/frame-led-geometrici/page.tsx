@@ -18,7 +18,11 @@ export default function Page() {
       benefitsEN={["Rectangular, trapezoidal or completely free-form shapes","Overlapping and tilted frames for scenic effects","Large format up to several metres per side","High-brightness LED with CRI 90+ colour rendering","Ceiling or wall installation on metal frame","Ideal for showrooms, shops, offices and luxury homes"]}
       heroImage="/uploads/controfisicover.png"
       heroImageAlt="Frame LED geometrici — M.B Cartongesso Busca"
-      galleryImages={[]}
+      galleryImages={[
+        { src: "/images/proj6-wip.jpg", alt: "Cornici LED geometriche sovrapposte nel soffitto di un negozio" },
+        { src: "/images/proj5-cover.jpg", alt: "Frame LED geometrici di grande formato durante la realizzazione" },
+        { src: "/uploads/controfisi8.png", alt: "Cornice LED a soffitto con faretti incassati" },
+      ]}
       serviceName="Frame LED Geometrici"
       serviceDescription="Frame LED geometrici su misura a Busca e Cuneo"
       relatedServices={[

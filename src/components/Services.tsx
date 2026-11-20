@@ -14,7 +14,7 @@ export default function Services() {
         <article className="service-row" key={paths[index]}>
           <span className="service-number">0{index + 1}</span>
           <div className="service-copy"><h3><Link href={`/${paths[index]}`}>{t(service.titleIT, service.titleEN)} <span aria-hidden="true">↗</span></Link></h3><p>{t(service.descIT, service.descEN)}</p><ul>{service.items.map(item => <li key={item.it}>{t(item.it, item.en)}</li>)}</ul></div>
-          <Link className="service-image" href={`/${paths[index]}`} tabIndex={-1} aria-hidden="true"><Image src={service.image} alt="" fill sizes="(max-width: 600px) 40vw, 240px" /></Link>
+          <Link className="service-image" href={`/${paths[index]}`} tabIndex={-1} aria-hidden="true"><Image src={service.image} alt={`${t(service.titleIT, service.titleEN)} — M.B Cartongesso, Busca e Cuneo`} fill sizes="(max-width: 600px) 40vw, 240px" /></Link>
         </article>
       ))}</div>
       <nav aria-label={t("Approfondimenti sul cartongesso", "More about drywall")} style={{ display: "flex", flexWrap: "wrap", gap: "0 1.5rem", marginTop: "2rem" }}>

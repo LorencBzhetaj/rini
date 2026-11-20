@@ -18,7 +18,11 @@ export default function Page() {
       benefitsEN={["Dividing walls in plasterboard to redesign spaces","Counter-walls with certified acoustic and thermal insulation","Moisture-resistant boards for bathrooms, kitchens and utility areas","Professional stucco finishing and painting included","Fast work with minimal dust and disruption","Cost-effective solutions compliant with current regulations"]}
       heroImage="/uploads/fotocover_image.png"
       heroImageAlt="Lavori in cartongesso residenziale a Busca, Cuneo — M.B Cartongesso"
-      galleryImages={[]}
+      galleryImages={[
+        { src: "/uploads/controfisi7.png", alt: "Soggiorno in fase di finitura: controsoffitto con LED perimetrale e pannello TV in cartongesso" },
+        { src: "/images/proj2-cover.jpg", alt: "Ingresso con controsoffitto in cartongesso, linee LED e pannello TV" },
+        { src: "/images/proj5-b.jpg", alt: "Struttura in cartongesso di un controsoffitto a livelli durante la posa" },
+      ]}
       serviceName="Cartongesso Residenziale"
       serviceDescription="Lavori in cartongesso residenziale a Busca e Cuneo"
       relatedServices={[
