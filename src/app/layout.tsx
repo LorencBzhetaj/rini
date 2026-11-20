@@ -151,7 +151,11 @@ const localBusinessSchema = {
       },
     ],
   },
-  sameAs: ["https://www.instagram.com/rino_rinoo"],
+  hasMap: "https://maps.google.com/?cid=17002881980493371117",
+  sameAs: [
+    "https://www.instagram.com/rino_rinoo",
+    "https://maps.google.com/?cid=17002881980493371117",
+  ],
 };
 
 export default function RootLayout({
