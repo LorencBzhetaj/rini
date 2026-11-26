@@ -11,11 +11,11 @@ const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body", display:
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo | Piemonte",
+    default: "M.B Cartongesso – Cartongessista a Busca e Cuneo",
     template: "%s | M.B Cartongesso",
   },
   description:
-    "Specialisti in controsoffitti in cartongesso con LED integrati a Busca e Cuneo. Pareti attrezzate, illuminazione lineare, lavori residenziali e commerciali in Piemonte. Preventivo gratuito.",
+    "Cartongessista a Busca e Cuneo: oltre 10 anni e 200+ progetti. Controsoffitti, pareti divisorie e pareti attrezzate in cartongesso, anche con LED. Preventivo gratuito.",
   authors: [{ name: "M.B Cartongesso" }],
   creator: "M.B Cartongesso",
   publisher: "M.B Cartongesso",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     locale: "it_IT",
     url: BASE_URL,
     siteName: "M.B Cartongesso",
-    title: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo",
+    title: "M.B Cartongesso – Cartongessista a Busca e Cuneo",
     description:
-      "Specialisti in controsoffitti in cartongesso con LED integrati a Busca e Cuneo. Pareti attrezzate e illuminazione su misura in Piemonte. Preventivo gratuito.",
+      "Cartongessista a Busca e Cuneo: oltre 10 anni e 200+ progetti. Controsoffitti, pareti divisorie e pareti attrezzate in cartongesso, anche con LED. Preventivo gratuito.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "M.B Cartongesso — Controsoffitti & LED a Busca, Cuneo",
+    title: "M.B Cartongesso – Cartongessista a Busca e Cuneo",
     description:
-      "Specialisti in controsoffitti in cartongesso con LED integrati. Busca, Cuneo, Piemonte. Preventivo gratuito.",
+      "Cartongessista a Busca e Cuneo: oltre 10 anni e 200+ progetti. Controsoffitti, pareti divisorie e pareti attrezzate in cartongesso, anche con LED. Preventivo gratuito.",
     images: ["/images/og-image.jpg"],
   },
   icons: {

@@ -192,7 +192,7 @@ export default function Hero() {
             marginBottom: "1.5rem",
           }}
         >
-          {t("Cartongesso e controsoffitti", "Drywall and ceilings")}
+          {t("Cartongessista", "Drywall contractor")}
           <br />
           <em
             style={{
@@ -201,7 +201,7 @@ export default function Hero() {
               fontWeight: 300,
             }}
           >
-            {t("con LED a Busca, Cuneo.","with LED in Busca, Cuneo.")}
+            {t("a Busca e Cuneo.","in Busca and Cuneo.")}
           </em>
         </motion.h1>
 
@@ -222,8 +222,8 @@ export default function Hero() {
           }}
         >
           {t(
-            "Interni moderni realizzati con precisione ed eleganza.",
-            "Modern interiors crafted with precision and elegance."
+            "Controsoffitti, pareti e LED su misura.",
+            "Bespoke ceilings, walls and LED lighting."
           )}
         </motion.p>
 
